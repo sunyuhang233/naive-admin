@@ -158,9 +158,13 @@ declare module 'vue' {
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useDialog: UnwrapRef<typeof import('naive-ui')['useDialog']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
+    readonly useLoadingBar: UnwrapRef<typeof import('naive-ui')['useLoadingBar']>
+    readonly useMessage: UnwrapRef<typeof import('naive-ui')['useMessage']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
+    readonly useNotification: UnwrapRef<typeof import('naive-ui')['useNotification']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
