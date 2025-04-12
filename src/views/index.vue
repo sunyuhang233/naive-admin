@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <main>
+  <header text-white bg-red-500 flex h-20 items-center justify-center>
     123
-  </main>
+  </header>
 </template>
