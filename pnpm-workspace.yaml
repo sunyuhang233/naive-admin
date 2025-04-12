@@ -1,5 +1,9 @@
 packages: []
 
+catalog:
+  '@vicons/carbon': ^0.13.0
+  naive-ui: ^2.41.0
+  sass-embedded: ^1.86.3
 catalogs:
 
   build:

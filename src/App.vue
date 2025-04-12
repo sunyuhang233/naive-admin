@@ -2,5 +2,9 @@
 </script>
 
 <template>
-  <RouterView />
+  <n-message-provider>
+    <n-notification-provider>
+      <RouterView />
+    </n-notification-provider>
+  </n-message-provider>
 </template>
