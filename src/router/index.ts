@@ -1,39 +1,15 @@
+import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import { staticRoutes } from './staticRoutes'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'homeLayout',
-      component: () => import('../layouts/index.vue'),
-      redirect: 'home',
-      children: [
-        {
-          path: 'home',
-          name: 'home',
-          component: () => import('../views/index.vue'),
-        },
-      ],
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('../views/login/index.vue'),
-    },
-    {
-      path: '/404',
-      name: '404',
-      component: () => import('../views/not-found.vue'),
-    },
-    {
-      path: '/:pathMatch(.*)',
-      redirect: {
-        path: '/404',
-        replace: true,
-      },
-    },
-  ],
+  routes: staticRoutes,
 })
+
+export async function installRouter(app: App) {
+  app.use(router)
+  await router.isReady()
+}
 
 export default router

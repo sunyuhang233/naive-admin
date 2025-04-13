@@ -28,6 +28,8 @@
     "eslint-plugin-format": "catalog:dev",
     "lint-staged": "catalog:dev",
     "naive-ui": "catalog:",
+    "pinia": "catalog:dev",
+    "pinia-plugin-persistedstate": "catalog:dev",
     "sass-embedded": "catalog:",
     "simple-git-hooks": "catalog:dev",
     "typescript": "catalog:dev",
