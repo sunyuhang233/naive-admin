@@ -14,6 +14,12 @@ export const useSettingStore = defineStore('setting', () => {
    */
   const mode = ref<'light' | 'dark' | 'system'>('light')
 
+  const lang = ref<'zh-CN' | 'en-US'>('zh-CN')
+
+  const toggleLang = (langType: 'zh-CN' | 'en-US') => {
+    lang.value = langType
+  }
+
   const toggleMode = (modeType: 'light' | 'dark' | 'system') => {
     mode.value = modeType
   }
@@ -32,5 +38,7 @@ export const useSettingStore = defineStore('setting', () => {
     toggleFullscreen,
     mode,
     toggleMode,
+    lang,
+    toggleLang,
   }
 })
