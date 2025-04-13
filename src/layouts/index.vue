@@ -2,6 +2,7 @@
 import type { MenuOption } from 'naive-ui'
 import { ref } from 'vue'
 import collapseButton from './components/collapse-button.vue'
+import notice from './components/notice.vue'
 import screenButton from './components/screen-button.vue'
 
 
@@ -46,7 +47,8 @@ const settingStore = useSettingStore()
           <div class="flex items-center">
             <collapse-button />
           </div>
-          <div class="flex items-center">
+          <div class="flex gap-1 items-center">
+            <notice />
             <screen-button />
           </div>
         </div>
