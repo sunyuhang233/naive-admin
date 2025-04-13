@@ -31,6 +31,7 @@ const rules: FormRules = {
 
 const router = useRouter()
 const route = useRoute()
+const authStore = useAuthStore()
 
 /**
  * 登录
@@ -39,6 +40,15 @@ const handleLogin = () => {
   formRef.value?.validate((errors) => {
     if (!errors) {
       loading.value = true
+      authStore.setToken('token')
+      authStore.setUserInfo({
+        id: 1,
+        username: 'admin',
+        name: 'admin',
+        avatar: '',
+        roles: ['admin'],
+        permissions: ['admin'],
+      })
       notification.success({
         title: '登录成功!',
         content: useDateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').value,
