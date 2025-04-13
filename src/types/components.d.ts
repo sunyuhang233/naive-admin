@@ -8,16 +8,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
     IconButton: typeof import('./../components/icon-button.vue')['default']
-    IconCommunity: typeof import('./../components/icons/IconCommunity.vue')['default']
-    IconDocumentation: typeof import('./../components/icons/IconDocumentation.vue')['default']
-    IconEcosystem: typeof import('./../components/icons/IconEcosystem.vue')['default']
-    IconSupport: typeof import('./../components/icons/IconSupport.vue')['default']
-    IconTooling: typeof import('./../components/icons/IconTooling.vue')['default']
     NBadge: typeof import('naive-ui')['NBadge']
     NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NDropdown: typeof import('naive-ui')['NDropdown']
     NEl: typeof import('naive-ui')['NEl']
     NEmpty: typeof import('naive-ui')['NEmpty']
     NFlex: typeof import('naive-ui')['NFlex']
@@ -30,6 +25,7 @@ declare module 'vue' {
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     NoticeItem: typeof import('./../components/notice-item.vue')['default']
     NPopover: typeof import('naive-ui')['NPopover']
+    NPopselect: typeof import('naive-ui')['NPopselect']
     NScrollbar: typeof import('naive-ui')['NScrollbar']
     NSpace: typeof import('naive-ui')['NSpace']
     NTab: typeof import('naive-ui')['NTab']
@@ -41,7 +37,5 @@ declare module 'vue' {
     NTooltip: typeof import('naive-ui')['NTooltip']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TheWelcome: typeof import('./../components/TheWelcome.vue')['default']
-    WelcomeItem: typeof import('./../components/WelcomeItem.vue')['default']
   }
 }
