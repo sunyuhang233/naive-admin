@@ -6,6 +6,7 @@ import darkMode from './components/dark-mode.vue'
 import langMode from './components/lang-mode.vue'
 import notice from './components/notice.vue'
 import screenButton from './components/screen-button.vue'
+import userCenter from './components/user-center.vue'
 
 
 const menuOptions: MenuOption[] = Array.from({ length: 100 }).map((_, index) => ({
@@ -54,6 +55,7 @@ const settingStore = useSettingStore()
             <screenButton />
             <darkMode />
             <langMode />
+            <userCenter />
           </div>
         </div>
       </n-layout-header>

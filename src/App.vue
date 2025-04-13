@@ -11,10 +11,12 @@ const settingStore = useSettingStore()
     :date-locale="settingStore.lang === 'zh-CN' ? dateZhCN : dateEnUS"
     :theme="settingStore.mode === 'light' ? lightTheme : darkTheme"
   >
-    <n-message-provider>
-      <n-notification-provider>
-        <RouterView />
-      </n-notification-provider>
-    </n-message-provider>
+    <n-dialog-provider>
+      <n-message-provider>
+        <n-notification-provider>
+          <RouterView />
+        </n-notification-provider>
+      </n-message-provider>
+    </n-dialog-provider>
   </n-config-provider>
 </template>
