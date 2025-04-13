@@ -3,6 +3,7 @@ import type { MenuOption } from 'naive-ui'
 import { ref } from 'vue'
 import collapseButton from './components/collapse-button.vue'
 import darkMode from './components/dark-mode.vue'
+import langMode from './components/lang-mode.vue'
 import notice from './components/notice.vue'
 import screenButton from './components/screen-button.vue'
 
@@ -52,6 +53,7 @@ const settingStore = useSettingStore()
             <notice />
             <screenButton />
             <darkMode />
+            <langMode />
           </div>
         </div>
       </n-layout-header>
