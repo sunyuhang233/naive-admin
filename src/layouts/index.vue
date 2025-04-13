@@ -2,6 +2,7 @@
 import type { MenuOption } from 'naive-ui'
 import { ref } from 'vue'
 import collapseButton from './components/collapse-button.vue'
+import screenButton from './components/screen-button.vue'
 
 
 const menuOptions: MenuOption[] = Array.from({ length: 100 }).map((_, index) => ({
@@ -46,7 +47,7 @@ const settingStore = useSettingStore()
             <collapse-button />
           </div>
           <div class="flex items-center">
-            1
+            <screen-button />
           </div>
         </div>
       </n-layout-header>
