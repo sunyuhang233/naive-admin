@@ -2,6 +2,7 @@
 import type { MenuOption } from 'naive-ui'
 import { ref } from 'vue'
 import collapseButton from './components/collapse-button.vue'
+import darkMode from './components/dark-mode.vue'
 import notice from './components/notice.vue'
 import screenButton from './components/screen-button.vue'
 
@@ -45,11 +46,12 @@ const settingStore = useSettingStore()
       <n-layout-header bordered position="absolute" class="z-999">
         <div class="flex h-60px items-center justify-between">
           <div class="flex items-center">
-            <collapse-button />
+            <collapseButton />
           </div>
           <div class="flex gap-1 items-center">
             <notice />
-            <screen-button />
+            <screenButton />
+            <darkMode />
           </div>
         </div>
       </n-layout-header>
