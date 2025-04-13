@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { MenuOption } from 'naive-ui'
 import { ref } from 'vue'
+import collapseButton from './components/collapse-button.vue'
 
 
 const menuOptions: MenuOption[] = Array.from({ length: 100 }).map((_, index) => ({
@@ -10,6 +11,8 @@ const menuOptions: MenuOption[] = Array.from({ length: 100 }).map((_, index) => 
 }))
 
 const inverted = ref(false)
+
+const settingStore = useSettingStore()
 </script>
 
 <template>
@@ -19,7 +22,7 @@ const inverted = ref(false)
       collapse-mode="width"
       :collapsed-width="64"
       :width="240"
-      show-trigger
+      :collapsed="settingStore.isCollapse"
       content-style="display: flex;flex-direction: column;min-height: 100%;"
     >
       <n-scrollbar>
@@ -39,7 +42,12 @@ const inverted = ref(false)
     >
       <n-layout-header bordered position="absolute" class="z-999">
         <div class="flex h-60px items-center justify-between">
-          123
+          <div class="flex items-center">
+            <collapse-button />
+          </div>
+          <div class="flex items-center">
+            1
+          </div>
         </div>
       </n-layout-header>
       <div class="p-b-40px p-t-60px flex flex-1 flex-col">

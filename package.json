@@ -20,9 +20,9 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:dev",
+    "@iconify/json": "catalog:",
     "@types/node": "catalog:dev",
     "@unocss/eslint-plugin": "catalog:dev",
-    "@vicons/carbon": "catalog:",
     "@vitejs/plugin-vue": "catalog:build",
     "eslint": "catalog:dev",
     "eslint-plugin-format": "catalog:dev",

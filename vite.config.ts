@@ -20,7 +20,7 @@ export default defineConfig({
         ],
       }],
       dts: 'src/types/auto-imports.d.ts',
-      dirs: ['./src/composables'],
+      dirs: ['./src/composables', './src/stores/**/*'],
       vueTemplate: true,
     }),
     Components({
