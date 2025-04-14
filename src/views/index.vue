@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="bg-red h-full w-full">
+  <div class="gray-700 dark:gray-200 h-full w-full">
     This is Home
   </div>
 </template>
