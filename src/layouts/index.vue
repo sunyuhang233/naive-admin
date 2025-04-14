@@ -6,6 +6,7 @@ import darkMode from './components/dark-mode.vue'
 import langMode from './components/lang-mode.vue'
 import notice from './components/notice.vue'
 import screenButton from './components/screen-button.vue'
+import settingButton from './components/setting-button.vue'
 import userCenter from './components/user-center.vue'
 
 
@@ -51,6 +52,7 @@ const settingStore = useSettingStore()
             <collapseButton />
           </div>
           <div class="flex gap-1 items-center">
+            <settingButton />
             <notice />
             <screenButton />
             <darkMode />

@@ -22,9 +22,9 @@ catalogs:
       specifier: ^28.4.1
       version: 28.4.1
   default:
-    '@vicons/carbon':
-      specifier: ^0.13.0
-      version: 0.13.0
+    '@iconify/json':
+      specifier: ^2.2.326
+      version: 2.2.326
     naive-ui:
       specifier: ^2.41.0
       version: 2.41.0
@@ -87,6 +87,9 @@ importers:
       '@iconify-json/carbon':
         specifier: catalog:build
         version: 1.2.8
+      '@vicons/carbon':
+        specifier: ^0.13.0
+        version: 0.13.0
       '@vueuse/core':
         specifier: catalog:frontend
         version: 13.1.0(vue@3.5.13(typescript@5.8.3))
@@ -101,7 +104,7 @@ importers:
         specifier: catalog:dev
         version: 4.12.0(@typescript-eslint/utils@8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(@unocss/eslint-plugin@66.1.0-beta.11(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-format@1.0.1(eslint@9.24.0(jiti@2.4.2)))(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1))
       '@iconify/json':
-        specifier: ^2.2.326
+        specifier: 'catalog:'
         version: 2.2.326
       '@types/node':
         specifier: catalog:dev
@@ -109,9 +112,6 @@ importers:
       '@unocss/eslint-plugin':
         specifier: catalog:dev
         version: 66.1.0-beta.11(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)
-      '@vicons/carbon':
-        specifier: 'catalog:'
-        version: 0.13.0
       '@vitejs/plugin-vue':
         specifier: catalog:build
         version: 5.2.3(vite@6.2.6(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))
