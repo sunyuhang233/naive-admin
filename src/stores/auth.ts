@@ -23,4 +23,6 @@ export const useAuthStore = defineStore('auth', () => {
     setUserInfo,
     clearUserInfo,
   }
+}, {
+  persist: true,
 })

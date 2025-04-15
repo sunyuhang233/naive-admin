@@ -16,7 +16,7 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "vite/client",
+      "vite/client"
     ],
     "allowJs": true,
     "strict": true,

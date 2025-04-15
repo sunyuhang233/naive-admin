@@ -74,6 +74,7 @@ declare global {
   const useId: typeof import('vue')['useId']
   const useLink: typeof import('vue-router')['useLink']
   const useLoadingBar: typeof import('naive-ui')['useLoadingBar']
+  const useMenuStore: typeof import('../stores/menu')['useMenuStore']
   const useMessage: typeof import('naive-ui')['useMessage']
   const useModel: typeof import('vue')['useModel']
   const useNotification: typeof import('naive-ui')['useNotification']
@@ -167,6 +168,7 @@ declare module 'vue' {
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLoadingBar: UnwrapRef<typeof import('naive-ui')['useLoadingBar']>
+    readonly useMenuStore: UnwrapRef<typeof import('../stores/menu')['useMenuStore']>
     readonly useMessage: UnwrapRef<typeof import('naive-ui')['useMessage']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useNotification: UnwrapRef<typeof import('naive-ui')['useNotification']>

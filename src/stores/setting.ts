@@ -41,4 +41,6 @@ export const useSettingStore = defineStore('setting', () => {
     lang,
     toggleLang,
   }
+}, {
+  persist: true,
 })
