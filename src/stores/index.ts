@@ -3,6 +3,7 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 export * from './auth'
+export * from './menu'
 export * from './setting'
 
 export function installPinia(app: App) {

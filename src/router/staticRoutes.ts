@@ -2,14 +2,8 @@ export const staticRoutes = [
   {
     path: '/',
     name: 'homeLayout',
-    component: () => import('~/layouts/index.vue'),
-    redirect: 'home',
     children: [
-      {
-        path: 'home',
-        name: 'home',
-        component: () => import('~/views/index.vue'),
-      },
+
     ],
   },
   {

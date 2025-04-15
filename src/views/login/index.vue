@@ -32,6 +32,7 @@ const rules: FormRules = {
 const router = useRouter()
 const route = useRoute()
 const authStore = useAuthStore()
+const menuStore = useMenuStore()
 
 /**
  * 登录
@@ -49,6 +50,7 @@ const handleLogin = () => {
         roles: ['admin'],
         permissions: ['admin'],
       })
+      menuStore.getDynamicRoutes()
       notification.success({
         title: '登录成功!',
         content: useDateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').value,
