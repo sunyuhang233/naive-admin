@@ -20,4 +20,6 @@ export const useMenuStore = defineStore('menu', () => {
     getDynamicRoutes,
     getFlatMenuList,
   }
+}, {
+  persist: true,
 })

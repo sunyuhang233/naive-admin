@@ -3,7 +3,7 @@ import type { FormInst, FormRules } from 'naive-ui'
 import { Locked, User } from '@vicons/carbon'
 import { useDateFormat } from '@vueuse/core'
 import { useNotification } from 'naive-ui'
-import { initDynamicRoutes } from '~/router/dynamicRoutes'
+import { initDynamicRouter } from '~/router/dynamicRoutes'
 import { local } from '~/utils/cache'
 
 
@@ -50,7 +50,7 @@ const handleLogin = () => {
         roles: ['admin'],
         permissions: ['admin'],
       })
-      await initDynamicRoutes()
+      await initDynamicRouter()
       notification.success({
         title: '登录成功!',
         content: useDateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').value,

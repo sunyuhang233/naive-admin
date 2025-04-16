@@ -2,21 +2,20 @@ import router from '.'
 
 const modules = import.meta.glob('~/views/**/*.vue')
 
-export async function initDynamicRoutes() {
+export const initDynamicRouter = async () => {
   const authStore = useAuthStore()
   const menuStore = useMenuStore()
-  const notification = useNotification()
+
   try {
+    // 1.获取菜单列表 && 按钮权限
     await menuStore.getDynamicRoutes()
+
+    // 2.判断当前用户有没有菜单权限
     if (!menuStore.menuList.length) {
-      notification.error({
-        title: '无权限访问！',
-        content: '当前账号没有任何权限，请联系管理员',
-        duration: 3000,
-      })
+      console.error('No menu permissions')
       authStore.clearUserInfo()
       router.replace('/login')
-      return Promise.reject(new Error('当前账号没有任何权限，请联系管理员'))
+      return Promise.reject(new Error('No permission'))
     }
 
     const homeItem = {
@@ -24,25 +23,33 @@ export async function initDynamicRoutes() {
       redirect: menuStore.getFlatMenuList[0].path,
     }
     router.addRoute(homeItem)
-
-    // 开始添加动态路由
+    // 5.添加动态路由
     menuStore.getFlatMenuList.forEach((item: any) => {
-      item.children && delete item.children
-      if (item.component) {
-        item.component = modules[`/src/views${item.component}`]
+      // 创建副本避免修改原始对象
+      const routeItem = { ...item }
+
+      // 移除children避免嵌套问题
+      if (routeItem.children) {
+        delete routeItem.children
       }
-      router.addRoute('layout', item)
+
+      // 加载组件
+      if (routeItem.component) {
+        routeItem.component = modules[`/src/views${routeItem.component}`]
+      }
+
+      // 添加路由
+      if (routeItem.name) {
+        router.addRoute('layout', routeItem)
+      }
     })
+
+    return menuStore.menuList
   }
   catch (error) {
-    notification.error({
-      title: '获取动态路由失败',
-      content: '获取动态路由失败',
-      duration: 3000,
-    })
+    console.error('Failed to initialize dynamic routes:', error)
     authStore.clearUserInfo()
     router.replace('/login')
     return Promise.reject(error)
   }
 }
-
