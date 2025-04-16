@@ -1,0 +1,41 @@
+export const DYNAMIC_ROUTES: MenuList[] = [
+  {
+    name: 'dashboard',
+    path: '/dashboard',
+    title: '仪表盘',
+    icon: 'i-icon-park-outline:analysis',
+    menuType: 'dir',
+    component: '',
+    id: 1,
+    pid: null,
+    order: 1,
+    children: [
+      {
+        name: 'workbench',
+        path: '/dashboard/workbench',
+        title: '工作台',
+        icon: 'i-icon-park-outline:alarm',
+        pinTab: true,
+        menuType: 'page',
+        component: '/dashboard/workbench/index.vue',
+        id: 2,
+        pid: 1,
+        order: 1,
+        children: [],
+      },
+      {
+        name: 'monitor',
+        path: '/dashboard/monitor',
+        title: '监控页',
+        icon: 'i-icon-park-outline:anchor',
+        menuType: 'page',
+        component: '/dashboard/monitor/index.vue',
+        id: 3,
+        pid: 1,
+        order: 2,
+        children: [],
+      },
+    ],
+  },
+
+]

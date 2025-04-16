@@ -3,6 +3,7 @@ import type { FormInst, FormRules } from 'naive-ui'
 import { Locked, User } from '@vicons/carbon'
 import { useDateFormat } from '@vueuse/core'
 import { useNotification } from 'naive-ui'
+import { initDynamicRoutes } from '~/router/dynamicRoutes'
 import { local } from '~/utils/cache'
 
 
@@ -10,8 +11,8 @@ const loading = ref(false)
 const formRef = ref<FormInst | null>(null)
 const notification = useNotification()
 const model = ref<LoginModel>({
-  username: '',
-  password: '',
+  username: 'admin',
+  password: '123456',
   isRemember: false,
 })
 const rules: FormRules = {
@@ -32,13 +33,12 @@ const rules: FormRules = {
 const router = useRouter()
 const route = useRoute()
 const authStore = useAuthStore()
-const menuStore = useMenuStore()
 
 /**
  * 登录
  */
 const handleLogin = () => {
-  formRef.value?.validate((errors) => {
+  formRef.value?.validate(async (errors) => {
     if (!errors) {
       loading.value = true
       authStore.setToken('token')
@@ -50,7 +50,7 @@ const handleLogin = () => {
         roles: ['admin'],
         permissions: ['admin'],
       })
-      menuStore.getDynamicRoutes()
+      await initDynamicRoutes()
       notification.success({
         title: '登录成功!',
         content: useDateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').value,
@@ -62,7 +62,7 @@ const handleLogin = () => {
       if (model.value.isRemember) {
         local.setItem('loginAccount', model.value)
       }
-      router.push(route.query?.redirect?.toString() || '/')
+      router.push(route.query?.redirect?.toString() || '/dashboard')
       loading.value = false
     }
   })
