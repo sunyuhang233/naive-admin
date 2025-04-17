@@ -8,12 +8,12 @@ export const initDynamicRouter = async () => {
 
   try {
     // 1.获取菜单列表 && 按钮权限
-    await menuStore.getDynamicRoutes()
+    menuStore.getDynamicRoutes()
 
     // 2.判断当前用户有没有菜单权限
     if (!menuStore.menuList.length) {
       console.error('No menu permissions')
-      authStore.clearUserInfo()
+      authStore.accessToken = null
       router.replace('/login')
       return Promise.reject(new Error('No permission'))
     }
@@ -25,30 +25,17 @@ export const initDynamicRouter = async () => {
     router.addRoute(homeItem)
     // 5.添加动态路由
     menuStore.getFlatMenuList.forEach((item: any) => {
-      // 创建副本避免修改原始对象
-      const routeItem = { ...item }
-
-      // 移除children避免嵌套问题
-      if (routeItem.children) {
-        delete routeItem.children
+      item.children && delete item.children
+      if (item.component && typeof item.component === 'string') {
+        item.component = modules[`/src/views${item.component}`]
       }
-
-      // 加载组件
-      if (routeItem.component) {
-        routeItem.component = modules[`/src/views${routeItem.component}`]
-      }
-
-      // 添加路由
-      if (routeItem.name) {
-        router.addRoute('layout', routeItem)
-      }
+      router.addRoute('layout', item)
     })
-
-    return menuStore.menuList
+    menuStore.setIsInitAuthRoute(true)
   }
   catch (error) {
     console.error('Failed to initialize dynamic routes:', error)
-    authStore.clearUserInfo()
+    authStore.accessToken = null
     router.replace('/login')
     return Promise.reject(error)
   }

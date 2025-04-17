@@ -10,46 +10,45 @@ const router = createRouter({
 })
 
 
-const whiteList = ['/login']
-
-function resetRouter() {
-  const menuStore = useMenuStore()
-  menuStore.getFlatMenuList.forEach((item) => {
-    const { name } = item
-    if (name && router.hasRoute(name)) {
-      router.removeRoute(name)
-    }
-  })
-}
-
-
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
   const menuStore = useMenuStore()
+  const isLogin = !!authStore.accessToken
+  if (to.meta.href) {
+    window.open(to.meta.href as string)
+    return false
+  }
   // 有 Token 就在当前页面，没有 Token 重置路由到登陆页
-  if (!authStore.accessToken) {
-    if (whiteList.includes(to.path)) {
+  if (!isLogin) {
+    if (to.name === 'login') {
       next()
-      return
     }
-    else {
-      next(`/login?redirect=${to.path}`) // 否则全部重定向到登录页
-      return
+    else if (to.name !== 'login') {
+      const redirect = to.name === '404' ? undefined : to.fullPath
+      next({ path: '/login', query: { redirect } })
     }
+    return false
   }
 
-  // 3.判断是访问登陆页
-  if (to.path === '/login') {
-    resetRouter()
-    next(from.fullPath)
-  }
-  else {
-    if (!menuStore.menuList.length) {
-      await initDynamicRouter()
-      return next({ ...to, replace: true })
+  console.log('menuStore.isInitAuthRoute', menuStore.isInitAuthRoute)
+  if (!menuStore.isInitAuthRoute) {
+    console.log(to.name)
+    await initDynamicRouter()
+    if (to.name === '404') {
+      next({
+        path: to.fullPath,
+        replace: true,
+        query: to.query,
+        hash: to.hash,
+      })
+      return false
     }
-    next()
   }
+  if (to.name === 'login') {
+    next({ path: '/' })
+    return false
+  }
+  next()
 })
 router.afterEach((to) => {
   document.title = `${to.meta.title} - Naive Admin`
