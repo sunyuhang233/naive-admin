@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@iconify-json/carbon": "catalog:build",
+    "@iconify/vue": "catalog:",
     "@vicons/carbon": "catalog:",
     "@vueuse/core": "catalog:frontend",
     "vue": "catalog:frontend",

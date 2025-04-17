@@ -50,6 +50,8 @@ interface MenuList extends RouteMeta {
 
 
 interface MenuOption {
+  id: number
+  pid: number | null
   path: string
   name: string
   component?: string | (() => Promise<any>)

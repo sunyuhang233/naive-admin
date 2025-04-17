@@ -1,3 +1,8 @@
+import type { MenuOption as NMenuOption } from 'naive-ui'
+import { Icon } from '@iconify/vue'
+import { NIcon } from 'naive-ui'
+import { RouterLink } from 'vue-router'
+import { arrayToTree } from '.'
 /**
  * 菜单转路由
  * @param menuList 菜单列表
@@ -8,6 +13,8 @@ export function getParseMenuArr(menuList: MenuList[]): MenuOption[] {
   for (let i = 0; i < menuList.length; i++) {
     const element = menuList[i]
     const menuItem: MenuOption = {
+      id: element.id,
+      pid: element.pid,
       path: element.path,
       name: element.name,
       component: element.component === '' ? undefined : element.component,
@@ -47,4 +54,73 @@ export function getFlatArr(menuList: MenuOption[]): MenuOption[] {
     }
     return flatArr
   }, [])
+}
+
+/**
+ * 渲染菜单
+ * @param menuList 菜单列表
+ * @returns 菜单列表
+ */
+export function renderMenus(menuList: MenuOption[]) {
+  const menus: NMenuOption[] = []
+  getFlatArr(menuList).forEach((item) => {
+    const target: NMenuOption = {
+      id: item.id,
+      pid: item.pid,
+      label:
+        (!item.meta.menuType || item.meta.menuType === 'page')
+          ? () =>
+              h(
+                RouterLink,
+                {
+                  to: {
+                    path: item.path,
+                  },
+                },
+                { default: () => item.meta.title },
+              )
+          : () => item.meta.title,
+      key: item.path,
+      icon: item.meta.icon ? renderIcon(item.meta.icon) : undefined,
+    }
+    menus.push(target)
+  })
+  return arrayToTree(menus)
+}
+
+
+export function renderIcon(icon?: string, props?: import('naive-ui').IconProps) {
+  if (!icon) {
+    return
+  }
+
+  return () => createIcon(icon, props)
+}
+
+export function createIcon(icon?: string, props?: import('naive-ui').IconProps) {
+  if (!icon) {
+    return
+  }
+
+  const isLocal = icon.startsWith('local:')
+  let innerIcon: any
+  if (isLocal) {
+    // const svgName = icon.replace('local:', '')
+    // const svg = import.meta.glob('@/assets/svg-icons/*.svg', {
+    //   query: '?raw',
+    //   import: 'default',
+    //   eager: true,
+    // })
+    // const target = svg[`/src/assets/svg-icons/${svgName}.svg`]
+    // innerIcon = h(NIcon, { ...props, innerHTML: target })
+  }
+  else {
+    innerIcon = h(NIcon, props, {
+      default: () => h(Icon, {
+        icon,
+      }),
+    })
+  }
+
+  return innerIcon
 }
