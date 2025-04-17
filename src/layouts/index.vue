@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { MenuOption } from 'naive-ui'
 import { ref } from 'vue'
 import collapseButton from './components/collapse-button.vue'
 import darkMode from './components/dark-mode.vue'
@@ -10,15 +9,10 @@ import settingButton from './components/setting-button.vue'
 import userCenter from './components/user-center.vue'
 
 
-const menuOptions: MenuOption[] = Array.from({ length: 100 }).map((_, index) => ({
-  label: `Option ${index + 1}`,
-  key: `option-${index + 1}`,
-  icon: () => null,
-}))
-
 const inverted = ref(false)
 
 const settingStore = useSettingStore()
+const menuStore = useMenuStore()
 </script>
 
 <template>
@@ -36,7 +30,7 @@ const settingStore = useSettingStore()
           :inverted="inverted"
           :collapsed-width="64"
           :collapsed-icon-size="22"
-          :options="menuOptions"
+          :options="menuStore.menus"
         />
       </n-scrollbar>
     </n-layout-sider>
