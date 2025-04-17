@@ -5,14 +5,20 @@ import { getFlatArr, getParseMenuArr, renderMenus } from '~/utils/route'
 export const useMenuStore = defineStore('menu', () => {
   const menuList = ref<MenuOption[]>([])
   const menus = ref<NMenuOption[]>([])
+  const isInitAuthRoute = ref(false)
 
   /**
    * 获取动态路由
    */
   const getDynamicRoutes = () => {
+    isInitAuthRoute.value = false
     const routes = getParseMenuArr(DYNAMIC_ROUTES)
     menuList.value = routes
     menus.value = renderMenus(routes)
+  }
+
+  const setIsInitAuthRoute = (value: boolean) => {
+    isInitAuthRoute.value = value
   }
 
   const getFlatMenuList = computed(() => getFlatArr(menuList.value))
@@ -22,7 +28,7 @@ export const useMenuStore = defineStore('menu', () => {
     getDynamicRoutes,
     getFlatMenuList,
     menus,
+    isInitAuthRoute,
+    setIsInitAuthRoute,
   }
-}, {
-  persist: true,
 })
