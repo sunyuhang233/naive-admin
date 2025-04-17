@@ -4,6 +4,8 @@ import { useDialog, useNotification } from 'naive-ui'
 
 const authStore = useAuthStore()
 const router = useRouter()
+const route = useRoute()
+const menuStore = useMenuStore()
 const notification = useNotification()
 const dialog = useDialog()
 
@@ -22,7 +24,11 @@ const handleSelect = (key: string) => {
           duration: 1000,
         })
         authStore.clearUserInfo()
-        router.push('/login')
+        menuStore.resetRouter()
+        router.push({
+          name: 'login',
+          query: { redirect: route.fullPath },
+        })
       },
     })
   }

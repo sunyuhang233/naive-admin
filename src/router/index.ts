@@ -50,6 +50,12 @@ router.beforeEach(async (to, from, next) => {
   }
   next()
 })
+router.beforeResolve((to, from, next) => {
+  const menuStore = useMenuStore()
+  menuStore.setActiveMenu(to.fullPath)
+  next()
+})
+
 router.afterEach((to) => {
   document.title = `${to.meta.title} - Naive Admin`
 })
