@@ -31,6 +31,7 @@ const menuStore = useMenuStore()
           :collapsed-width="64"
           :collapsed-icon-size="22"
           :options="menuStore.menus"
+          :value="menuStore.activeMenu"
         />
       </n-scrollbar>
     </n-layout-sider>

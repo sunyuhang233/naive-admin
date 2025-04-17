@@ -6,6 +6,7 @@ export const useMenuStore = defineStore('menu', () => {
   const menuList = ref<MenuOption[]>([])
   const menus = ref<NMenuOption[]>([])
   const isInitAuthRoute = ref(false)
+  const activeMenu = ref<string | null>(null)
 
   /**
    * 获取动态路由
@@ -17,11 +18,32 @@ export const useMenuStore = defineStore('menu', () => {
     menus.value = renderMenus(routes)
   }
 
+  /**
+   * 设置是否初始化权限路由
+   */
   const setIsInitAuthRoute = (value: boolean) => {
     isInitAuthRoute.value = value
   }
 
+  /**
+   * 设置当前激活的菜单
+   */
+  const setActiveMenu = (menu: string) => {
+    activeMenu.value = menu
+  }
+
+  /**
+   * 获取扁平化路由
+   */
   const getFlatMenuList = computed(() => getFlatArr(menuList.value))
+
+  /**
+   * 重置路由
+   */
+  const resetRouter = () => {
+    activeMenu.value = null
+  }
+
 
   return {
     menuList,
@@ -30,5 +52,8 @@ export const useMenuStore = defineStore('menu', () => {
     menus,
     isInitAuthRoute,
     setIsInitAuthRoute,
+    activeMenu,
+    setActiveMenu,
+    resetRouter,
   }
 })
