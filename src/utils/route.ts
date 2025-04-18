@@ -124,3 +124,46 @@ export function createIcon(icon?: string, props?: import('naive-ui').IconProps) 
 
   return innerIcon
 }
+
+/**
+ * 获取所有面包屑
+ * @param menuList 菜单列表
+ * @returns 面包屑列表
+ */
+export function getAllBreadcrumbList(menuList: MenuOption[]) {
+  const handleBreadcrumbList: { [key: string]: any } = {}
+  const loop = (menuItem: MenuOption) => {
+    if (menuItem?.children?.length) {
+      menuItem.children.forEach(item => loop(item))
+    }
+    handleBreadcrumbList[menuItem.path] = getCurrentBreadcrumb(menuItem.path, menuList)
+  }
+  menuList.forEach(item => loop(item))
+  return handleBreadcrumbList
+}
+
+/**
+ * 获取当前面包屑
+ * @param path 路径
+ * @param menuList 菜单列表
+ * @returns 面包屑列表
+ */
+export function getCurrentBreadcrumb(path: string, menuList: MenuOption[]) {
+  const tempPath: MenuOption[] = []
+  try {
+    const getNodePath = (node: MenuOption) => {
+      tempPath.push(node)
+      if (node.path === path) {
+        throw new Error('Find IT!')
+      }
+      if (node.children?.length) {
+        node.children.forEach(item => getNodePath(item))
+      }
+      tempPath.pop()
+    }
+    menuList.forEach(item => getNodePath(item))
+  }
+  catch {
+    return tempPath
+  }
+}
