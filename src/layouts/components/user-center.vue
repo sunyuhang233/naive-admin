@@ -38,7 +38,7 @@ const options: DropdownOption[] = [
   {
     label: '用户资料',
     key: 'profile',
-    icon: () => h('div', { class: 'i-icon-park-outline-user' }),
+    icon: () => h('div', { class: 'i-carbon-user' }),
   },
   {
     type: 'divider',
@@ -66,7 +66,7 @@ const options: DropdownOption[] = [
     <n-avatar lazy round class="cursor-pointer" :src="authStore.userInfo?.avatar">
       <template #fallback>
         <div class="wh-full flex-center">
-          <i-icon-park-outline-user />
+          <div class="i-carbon-user" />
         </div>
       </template>
     </n-avatar>

@@ -1,6 +1,6 @@
 import type { MenuOption as NMenuOption } from 'naive-ui'
 import { DYNAMIC_ROUTES } from '~/router/constants'
-import { getFlatArr, getParseMenuArr, renderMenus } from '~/utils/route'
+import { getAllBreadcrumbList, getFlatArr, getParseMenuArr, renderMenus } from '~/utils/route'
 
 export const useMenuStore = defineStore('menu', () => {
   const menuList = ref<MenuOption[]>([])
@@ -38,6 +38,11 @@ export const useMenuStore = defineStore('menu', () => {
   const getFlatMenuList = computed(() => getFlatArr(menuList.value))
 
   /**
+   * 获取所有面包屑
+   */
+  const getBreadcrumbList = computed(() => getAllBreadcrumbList(menuList.value))
+
+  /**
    * 重置路由
    */
   const resetRouter = () => {
@@ -55,5 +60,6 @@ export const useMenuStore = defineStore('menu', () => {
     activeMenu,
     setActiveMenu,
     resetRouter,
+    getBreadcrumbList,
   }
 })
