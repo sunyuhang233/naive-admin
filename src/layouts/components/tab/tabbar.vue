@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { RouteLocationNormalized } from 'vue-router'
+import { useDraggable } from 'vue-draggable-plus'
 import ContentFullScreen from './content-full-screen.vue'
 import DropTabs from './drop-tabs.vue'
 import Reload from './reload.vue'
@@ -89,20 +90,26 @@ const handleContextMenu = (e: MouseEvent, tab: RouteLocationNormalized) => {
     y.value = e.clientY
   })
 }
+
+const el = ref()
+const { tabs } = storeToRefs(tabStore)
+useDraggable(el, tabs, {
+  animation: 150,
+  ghostClass: 'ghost',
+})
 </script>
 
 <template>
   <div class="pl-2 flex w-full relative">
-    <div class="flex flex-1 items-end">
-      <template v-for="item in tabStore.tabs" :key="item.path">
-        <TabbarItem
-          :value="tabStore.currentTabPath" :route="item"
-          :closable="tabStore.tabs.length > 1"
-          @close="tabStore.closeTab"
-          @click="handleTab(item)"
-          @contextmenu="tabStore.tabs.length > 1 && handleContextMenu($event, item)"
-        />
-      </template>
+    <div ref="el" class="flex flex-1 items-end">
+      <TabbarItem
+        v-for="item in tabStore.tabs" :key="item.path"
+        :value="tabStore.currentTabPath" :route="item"
+        :closable="tabStore.tabs.length > 1"
+        @close="tabStore.closeTab"
+        @click="handleTab(item)"
+        @contextmenu="tabStore.tabs.length > 1 && handleContextMenu($event, item)"
+      />
       <n-dropdown
         placement="bottom-start" trigger="manual" :x="x" :y="y" :options="options" :show="showDropdown"
         :on-clickoutside="onClickoutside" @select="handleSelect"
@@ -115,3 +122,10 @@ const handleContextMenu = (e: MouseEvent, tab: RouteLocationNormalized) => {
     </n-el>
   </div>
 </template>
+
+<style>
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+</style>
