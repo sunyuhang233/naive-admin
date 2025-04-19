@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import breadcrumb from './header/breadcrumb.vue'
 import collapseButton from './header/collapse-button.vue'
 import darkMode from './header/dark-mode.vue'
@@ -8,12 +7,10 @@ import notice from './header/notice.vue'
 import screenButton from './header/screen-button.vue'
 import settingButton from './header/setting-button.vue'
 import userCenter from './header/user-center.vue'
+import Menu from './menu/index.vue'
 import tabbar from './tab/tabbar.vue'
 
-const inverted = ref(false)
-
 const settingStore = useSettingStore()
-const menuStore = useMenuStore()
 </script>
 
 <template>
@@ -27,13 +24,7 @@ const menuStore = useMenuStore()
       content-style="display: flex;flex-direction: column;min-height: 100%;"
     >
       <n-scrollbar>
-        <n-menu
-          :inverted="inverted"
-          :collapsed-width="64"
-          :collapsed-icon-size="22"
-          :options="menuStore.menus"
-          :value="menuStore.activeMenu"
-        />
+        <Menu />
       </n-scrollbar>
     </n-layout-sider>
     <n-layout
@@ -61,7 +52,7 @@ const menuStore = useMenuStore()
           <tabbar />
         </div>
       </n-layout-header>
-      <div class="p-16px p-b-40px p-t-121px flex flex-1 flex-col">
+      <div class="p-16px p-b-56px p-t-121px flex flex-1 flex-col">
         <RouterView />
       </div>
       <n-layout-footer

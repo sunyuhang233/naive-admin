@@ -4,4 +4,5 @@ import leftMenu from './components/left-menu.vue'
 
 <template>
   <left-menu />
+  <!-- <top-menu /> -->
 </template>
