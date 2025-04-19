@@ -115,6 +115,11 @@ export const useSettingStore = defineStore('setting', () => {
     isFullscreen.value = !isFullscreen.value
   }
 
+  const contentFullScreen = ref(false)
+  const toggleContentFullScreen = () => {
+    contentFullScreen.value = !contentFullScreen.value
+  }
+
   return {
     isCollapse,
     toggleCollapse,
@@ -148,6 +153,8 @@ export const useSettingStore = defineStore('setting', () => {
     toggleShowBreadcrumbIcon,
     layout,
     toggleLayout,
+    contentFullScreen,
+    toggleContentFullScreen,
   }
 }, {
   persist: true,
