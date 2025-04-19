@@ -9,7 +9,7 @@ const settingStore = useSettingStore()
         <div class="i-icon-park-outline-setting-two" />
       </IconButton>
     </template>
-    <span>设置</span>
+    <span>{{ $t('setting.setting') }}</span>
   </n-tooltip>
 </template>
 

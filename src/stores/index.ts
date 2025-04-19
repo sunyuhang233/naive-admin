@@ -7,7 +7,7 @@ export * from './menu'
 export * from './setting'
 export * from './tab'
 
-export function installPinia(app: App) {
+export async function installPinia(app: App) {
   const pinia = createPinia()
   pinia.use(piniaPluginPersistedstate)
   app.use(pinia)

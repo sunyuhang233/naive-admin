@@ -1,5 +1,7 @@
 import { colord } from 'colord'
 import themeConfig from '~/config/theme.json'
+import { local } from '~/utils/cache'
+import { setLocale } from '~/utils/i18n'
 
 export const useSettingStore = defineStore('setting', () => {
   const theme = ref(themeConfig)
@@ -21,7 +23,7 @@ export const useSettingStore = defineStore('setting', () => {
   /**
    * 语言
    */
-  const lang = ref<'zh-CN' | 'en-US'>('zh-CN')
+  const lang = ref<LangType>('zhCN')
 
   /**
    * 设置抽屉
@@ -101,8 +103,10 @@ export const useSettingStore = defineStore('setting', () => {
     showSettingDrawer.value = !showSettingDrawer.value
   }
 
-  const toggleLang = (langType: 'zh-CN' | 'en-US') => {
+  const toggleLang = (langType: LangType) => {
+    local.setItem('lang', langType)
     lang.value = langType
+    setLocale(langType)
   }
   const toggleMode = (modeType: 'light' | 'dark' | 'system') => {
     mode.value = modeType

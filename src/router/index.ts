@@ -1,3 +1,4 @@
+import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { LOGIN_PATH, NOT_FOUND_PATH } from '~/config'
 import { initDynamicRouter } from './dynamicRoutes'
@@ -63,5 +64,10 @@ router.afterEach((to) => {
   const title = import.meta.env.VITE_APP_TITLE
   document.title = to.meta.title ? `${to.meta.title} - ${title}` : title
 })
+
+export async function installRouter(app: App) {
+  app.use(router)
+  await router.isReady()
+}
 
 export default router

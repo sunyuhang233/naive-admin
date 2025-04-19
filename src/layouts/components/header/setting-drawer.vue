@@ -21,34 +21,36 @@ const palette = [
 ]
 const settingStore = useSettingStore()
 
+const { t } = useI18n()
+
 const transitionSelectorOptions = computed(() => {
   return [
     {
-      label: '无过渡',
+      label: t('setting.transition.none'),
       value: '',
     },
     {
-      label: '淡入淡出',
+      label: t('setting.transition.fadeSlide'),
       value: 'fade-slide',
     },
     {
-      label: '底部淡出',
+      label: t('setting.transition.fadeBottom'),
       value: 'fade-bottom',
     },
     {
-      label: '收缩淡出',
+      label: t('setting.transition.fadeScale'),
       value: 'fade-scale',
     },
     {
-      label: '扩大淡出',
+      label: t('setting.transition.zoomFade'),
       value: 'zoom-fade',
     },
     {
-      label: '收缩',
+      label: t('setting.transition.zoomOut'),
       value: 'zoom-out',
     },
     {
-      label: '柔和',
+      label: t('setting.transition.fade'),
       value: 'fade',
     },
   ]
@@ -57,47 +59,47 @@ const transitionSelectorOptions = computed(() => {
 
 <template>
   <n-drawer v-model:show="settingStore.showSettingDrawer" :width="360" :mask-closable="false">
-    <n-drawer-content title="系统设置" closable>
+    <n-drawer-content :title="$t('setting.setting')" closable>
       <n-space vertical>
-        <n-divider>布局设置</n-divider>
+        <n-divider>{{ $t('setting.layout') }}</n-divider>
         <layout-select v-model:value="settingStore.layout" />
-        <n-divider>主题设置</n-divider>
+        <n-divider>{{ $t('setting.theme') }}</n-divider>
         <n-space justify="space-between">
-          <span>色弱模式</span>
+          <span>{{ $t('setting.colorWeak') }}</span>
           <n-switch :value="settingStore.colorWeak" @update:value="settingStore.toggleColorWeak" />
         </n-space>
         <n-space justify="space-between">
-          <span>黑白模式</span>
+          <span>{{ $t('setting.grayMode') }}</span>
           <n-switch :value="settingStore.grayMode" @update:value="settingStore.toggleGrayMode" />
         </n-space>
         <n-space justify="space-between">
-          <span>主题色</span>
+          <span>{{ $t('setting.primaryColor') }}</span>
           <n-color-picker :value="settingStore.primaryColor" class="w-10em" :swatches="palette" @update:value="settingStore.changePrimaryColor" />
         </n-space>
         <n-space justify="space-between">
-          <span>页面过渡</span>
+          <span>{{ $t('setting.transition.name') }}</span>
           <n-select v-model:value="settingStore.transition" class="w-10em" :options="transitionSelectorOptions" @update:value="settingStore.reloadPage" />
         </n-space>
 
-        <n-divider>界面显示</n-divider>
+        <n-divider>{{ $t('setting.interface') }}</n-divider>
         <n-space justify="space-between">
-          <span>LOGO显示</span>
+          <span>{{ $t('setting.showLogo') }}</span>
           <n-switch :value="settingStore.showLogo" @update:value="settingStore.toggleShowLogo" />
         </n-space>
         <n-space justify="space-between">
-          <span>标签栏显示</span>
+          <span>{{ $t('setting.showTabbar') }}</span>
           <n-switch :value="settingStore.showTabbar" @update:value="settingStore.toggleShowTabbar" />
         </n-space>
         <n-space justify="space-between">
-          <span>底部版权</span>
+          <span>{{ $t('setting.showFooter') }}</span>
           <n-switch :value="settingStore.showFooter" @update:value="settingStore.toggleShowFooter" />
         </n-space>
         <n-space justify="space-between">
-          <span>面包屑</span>
+          <span>{{ $t('setting.showBreadcrumb') }}</span>
           <n-switch :value="settingStore.showBreadcrumb" @update:value="settingStore.toggleShowBreadcrumb" />
         </n-space>
         <n-space justify="space-between">
-          <span>面包屑图标</span>
+          <span>{{ $t('setting.showBreadcrumbIcon') }}</span>
           <n-switch :value="settingStore.showBreadcrumbIcon" @update:value="settingStore.toggleShowBreadcrumbIcon" />
         </n-space>
       </n-space>

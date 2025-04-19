@@ -15,7 +15,7 @@ const currentTab = ref(0)
             </n-badge>
           </IconButton>
         </template>
-        <span>消息通知</span>
+        <span>{{ $t('setting.notice') }}</span>
       </n-tooltip>
     </template>
 
@@ -24,7 +24,7 @@ const currentTab = ref(0)
         <n-tab-pane :name="0">
           <template #tab>
             <n-space class="w-130px" justify="center">
-              通知
+              {{ $t('setting.notice') }}
               <n-badge type="info" :value="2" :max="99" />
             </n-space>
           </template>
@@ -33,7 +33,7 @@ const currentTab = ref(0)
         <n-tab-pane :name="1">
           <template #tab>
             <n-space class="w-130px" justify="center">
-              消息
+              {{ $t('setting.msg') }}
               <n-badge type="warning" :value="2" :max="99" />
             </n-space>
           </template>
@@ -42,7 +42,7 @@ const currentTab = ref(0)
         <n-tab-pane :name="2">
           <template #tab>
             <n-space class="w-130px" justify="center">
-              代办
+              {{ $t('setting.empty') }}
               <n-badge type="error" :value="2" :max="99" />
             </n-space>
           </template>

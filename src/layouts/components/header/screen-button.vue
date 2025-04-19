@@ -13,6 +13,12 @@ const handleToggleFullscreen = () => {
     document.exitFullscreen()
   }
 }
+
+const { t } = useI18n()
+
+const title = computed(() => {
+  return store.isFullscreen ? t('setting.exitFullscreen') : t('setting.fullscreen')
+})
 </script>
 
 <template>
@@ -23,7 +29,7 @@ const handleToggleFullscreen = () => {
         <div v-else class="i-icon-park-outline-full-screen" />
       </IconButton>
     </template>
-    <span>{{ store.isFullscreen ? '退出' : '全屏' }}模式</span>
+    <span>{{ title }}</span>
   </n-tooltip>
 </template>
 

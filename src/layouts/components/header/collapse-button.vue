@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const store = useSettingStore()
+const { t } = useI18n()
+const tittle = computed(() => store.isCollapse ? t('setting.expand') : t('setting.collapse'))
 </script>
 
 <template>
@@ -10,8 +12,6 @@ const store = useSettingStore()
         <div v-else class="i-icon-park-outline-menu-unfold-one" />
       </IconButton>
     </template>
-    <span>{{ store.isCollapse ? '展开' : '折叠' }}侧边栏</span>
+    <span>{{ tittle }}</span>
   </n-tooltip>
 </template>
-
-

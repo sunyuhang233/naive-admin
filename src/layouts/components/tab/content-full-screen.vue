@@ -10,6 +10,6 @@ const settingStore = useSettingStore()
         <div v-else class="i-icon-park-outline-full-screen-one" />
       </IconButton>
     </template>
-    <span>切换内容全屏</span>
+    <span>{{ $t('setting.fullscreen') }}</span>
   </n-tooltip>
 </template>

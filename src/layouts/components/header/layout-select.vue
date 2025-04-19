@@ -19,7 +19,7 @@ const value = defineModel<LayoutType>('value', {
           <div class="bg-[var(--divider-color)]" />
         </n-el>
       </template>
-      <span>左侧布局</span>
+      <span>{{ $t('setting.left') }}</span>
     </n-tooltip>
     <n-tooltip placement="bottom" trigger="hover">
       <template #trigger>
@@ -34,7 +34,7 @@ const value = defineModel<LayoutType>('value', {
           <div class="bg-[var(--divider-color)]" />
         </n-el>
       </template>
-      <span>上下布局</span>
+      <span>{{ $t('setting.top') }}</span>
     </n-tooltip>
     <n-tooltip placement="bottom" trigger="hover">
       <template #trigger>
@@ -50,7 +50,7 @@ const value = defineModel<LayoutType>('value', {
           <div class="bg-[var(--divider-color)]" />
         </n-el>
       </template>
-      <span>混合布局</span>
+      <span>{{ $t('setting.mix') }}</span>
     </n-tooltip>
   </div>
 </template>

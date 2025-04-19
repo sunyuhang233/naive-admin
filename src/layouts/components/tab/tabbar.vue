@@ -11,36 +11,36 @@ const tabStore = useTabStore()
 const showDropdown = ref(false)
 const x = ref(0)
 const y = ref(0)
-
+const { t } = useI18n()
 const options = computed(() => {
   return [
     {
-      label: '刷新',
+      label: t('common.reload'),
       key: 'reload',
       icon: () => h('div', { class: 'i-icon-park-outline-refresh' }),
     },
     {
-      label: '关闭',
+      label: t('common.closeCurrent'),
       key: 'closeCurrent',
       icon: () => h('div', { class: 'i-icon-park-outline-close' }),
     },
     {
-      label: '关闭其他',
+      label: t('common.closeOther'),
       key: 'closeOther',
       icon: () => h('div', { class: 'i-icon-park-outline-delete-four' }),
     },
     {
-      label: '关闭左侧',
+      label: t('common.closeLeft'),
       key: 'closeLeft',
       icon: () => h('div', { class: 'i-icon-park-outline-to-left' }),
     },
     {
-      label: '关闭右侧',
+      label: t('common.closeRight'),
       key: 'closeRight',
       icon: () => h('div', { class: 'i-icon-park-outline-to-right' }),
     },
     {
-      label: '关闭所有',
+      label: t('common.closeAll'),
       key: 'closeAll',
       icon: () => h('div', { class: 'i-icon-park-outline-fullwidth' }),
     },
