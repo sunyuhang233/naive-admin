@@ -8,3 +8,6 @@ declare namespace Storage {
     loginAccount: LoginModel
   }
 }
+
+
+type LayoutType = 'left' | 'top' | 'mix'

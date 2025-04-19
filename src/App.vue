@@ -10,6 +10,7 @@ const settingStore = useSettingStore()
     :locale="settingStore.lang === 'zh-CN' ? zhCN : enUS"
     :date-locale="settingStore.lang === 'zh-CN' ? dateZhCN : dateEnUS"
     :theme="settingStore.mode === 'light' ? lightTheme : darkTheme"
+    :theme-overrides="settingStore.theme"
   >
     <n-dialog-provider>
       <n-message-provider>

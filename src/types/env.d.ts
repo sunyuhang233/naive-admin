@@ -4,5 +4,6 @@ interface ImportMeta {
 
 interface ImportMetaEnv {
   readonly VITE_STORAGE_PREFIX: string
+  readonly VITE_APP_TITLE: string
 }
 
