@@ -1,10 +1,14 @@
 <script setup lang="ts">
+const settingStore = useSettingStore()
+
 const loading = ref(false)
-const handleReload = () => {
+
+function handleReload() {
   loading.value = true
-  nextTick(() => {
+  settingStore.reloadPage()
+  setTimeout(() => {
     loading.value = false
-  })
+  }, 800)
 }
 </script>
 

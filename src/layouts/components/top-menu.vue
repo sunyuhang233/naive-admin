@@ -15,7 +15,7 @@ const settingStore = useSettingStore()
 <template>
   <n-layout class="flex flex-col h-100dvh w-full" embedded :native-scrollbar="false">
     <n-layout-header bordered position="absolute" class="z-999">
-      <div class="flex shrink-0 h-60px items-center justify-between">
+      <div v-if="!settingStore.contentFullScreen" class="flex shrink-0 h-60px items-center justify-between">
         <Logo v-if="settingStore.showLogo" />
         <Menu mode="horizontal" responsive />
         <div class="flex gap-1 items-center">
@@ -32,8 +32,9 @@ const settingStore = useSettingStore()
     <div
       :class="{
         'p-t-121px': settingStore.showTabbar,
-        'p-b-56px': settingStore.showFooter,
+        'p-b-56px': settingStore.showFooter && !settingStore.contentFullScreen,
         'p-t-76px': !settingStore.showTabbar,
+        'p-t-61px': settingStore.contentFullScreen,
       }"
       class="p-16px flex flex-1 flex-col"
     >

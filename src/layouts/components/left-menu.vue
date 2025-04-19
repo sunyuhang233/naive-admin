@@ -17,6 +17,7 @@ const settingStore = useSettingStore()
 <template>
   <n-layout embedded has-sider class="h-full w-full">
     <n-layout-sider
+      v-if="!settingStore.contentFullScreen"
       bordered
       collapse-mode="width"
       :collapsed-width="64"
@@ -36,7 +37,7 @@ const settingStore = useSettingStore()
       :native-scrollbar="false"
     >
       <n-layout-header bordered position="absolute" class="z-999">
-        <div class="flex h-60px items-center justify-between">
+        <div v-if="!settingStore.contentFullScreen" class="flex h-60px items-center justify-between">
           <div class="flex items-center">
             <collapseButton />
             <breadcrumb v-if="settingStore.showBreadcrumb" />
@@ -57,8 +58,9 @@ const settingStore = useSettingStore()
       <div
         :class="{
           'p-t-121px': settingStore.showTabbar,
-          'p-b-56px': settingStore.showFooter,
+          'p-b-56px': settingStore.showFooter && !settingStore.contentFullScreen,
           'p-t-76px': !settingStore.showTabbar,
+          'p-t-61px': settingStore.contentFullScreen,
         }"
         class="p-16px flex flex-1 flex-col"
       >
