@@ -18,7 +18,7 @@ interface IRouteMeta {
   /* 有些路由我们并不想在菜单中显示，比如某些编辑页面。 */
   hide?: boolean
   /* 菜单排序。 */
-  order: number
+  order?: number
   /* 嵌套外链  */
   href?: string
   /** 当前路由不在左侧菜单显示，但需要高亮某个菜单的情况 */

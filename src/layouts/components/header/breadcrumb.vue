@@ -6,12 +6,13 @@ const breadcrumbList = computed(() => {
   const breadcrumbData = menuStore.getBreadcrumbList[route.matched[route.matched.length - 1].path] ?? []
   return breadcrumbData
 })
+const settingStore = useSettingStore()
 </script>
 
 <template>
   <TransitionGroup name="list" tag="ul" style="display: flex; gap:1em;">
     <n-el v-for="(item, index) in breadcrumbList" :key="index" class="split flex gap-2 cursor-pointer items-center" tag="li" @click="router.push(item.path)">
-      <icon :icon="item.meta.icon" />
+      <icon v-if="settingStore.showBreadcrumbIcon" :icon="item.meta.icon" />
       <span>{{ item.meta.title }}</span>
     </n-el>
   </TransitionGroup>

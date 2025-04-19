@@ -18,6 +18,7 @@
     "@iconify/vue": "catalog:",
     "@vicons/carbon": "catalog:",
     "@vueuse/core": "catalog:frontend",
+    "colord": "catalog:",
     "vue": "catalog:frontend",
     "vue-draggable-plus": "catalog:",
     "vue-router": "catalog:frontend"

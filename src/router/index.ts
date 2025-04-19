@@ -60,8 +60,8 @@ router.beforeResolve((to, from, next) => {
 })
 
 router.afterEach((to) => {
-  document.title = `${to.meta.title} - Naive Admin`
+  const title = import.meta.env.VITE_APP_TITLE
+  document.title = to.meta.title ? `${to.meta.title} - ${title}` : title
 })
-
 
 export default router
