@@ -19,6 +19,7 @@
     "@vicons/carbon": "catalog:",
     "@vueuse/core": "catalog:frontend",
     "vue": "catalog:frontend",
+    "vue-draggable-plus": "catalog:",
     "vue-router": "catalog:frontend"
   },
   "devDependencies": {
