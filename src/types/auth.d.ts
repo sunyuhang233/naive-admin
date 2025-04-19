@@ -8,7 +8,7 @@ interface UserInfo {
 }
 
 
-interface RouteMeta {
+interface IRouteMeta {
   /* 页面标题，通常必选。 */
   title: string
   /* 图标，一般配合菜单使用 */
@@ -56,6 +56,6 @@ interface MenuOption {
   name: string
   component?: string | (() => Promise<any>)
   redirect?: string
-  meta: RouteMeta
+  meta: IRouteMeta
   children?: MenuOption[]
 }

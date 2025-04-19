@@ -3,6 +3,7 @@ import type { FormInst, FormRules } from 'naive-ui'
 import { Locked, User } from '@vicons/carbon'
 import { useDateFormat } from '@vueuse/core'
 import { useNotification } from 'naive-ui'
+import { HOME_PATH } from '~/config'
 import { initDynamicRouter } from '~/router/dynamicRoutes'
 import { local } from '~/utils/cache'
 
@@ -62,7 +63,7 @@ const handleLogin = () => {
       if (model.value.isRemember) {
         local.setItem('loginAccount', model.value)
       }
-      router.push(route.query?.redirect?.toString() || '/dashboard')
+      router.push(route.query?.redirect?.toString() || HOME_PATH)
       loading.value = false
     }
   })

@@ -1,3 +1,4 @@
+import { LOGIN_PATH } from '~/config'
 import router from '.'
 
 const modules = import.meta.glob('~/views/**/*.vue')
@@ -14,7 +15,7 @@ export const initDynamicRouter = async () => {
     if (!menuStore.menuList.length) {
       console.error('No menu permissions')
       authStore.accessToken = null
-      router.replace('/login')
+      router.replace(LOGIN_PATH)
       return Promise.reject(new Error('No permission'))
     }
 
@@ -36,7 +37,7 @@ export const initDynamicRouter = async () => {
   catch (error) {
     console.error('Failed to initialize dynamic routes:', error)
     authStore.accessToken = null
-    router.replace('/login')
+    router.replace(LOGIN_PATH)
     return Promise.reject(error)
   }
 }

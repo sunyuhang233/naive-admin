@@ -7,6 +7,7 @@ import langMode from './components/lang-mode.vue'
 import notice from './components/notice.vue'
 import screenButton from './components/screen-button.vue'
 import settingButton from './components/setting-button.vue'
+import tabbar from './components/tabbar.vue'
 import userCenter from './components/user-center.vue'
 
 const inverted = ref(false)
@@ -56,9 +57,12 @@ const menuStore = useMenuStore()
             <userCenter />
           </div>
         </div>
+        <div class="h-45px">
+          <tabbar />
+        </div>
       </n-layout-header>
-      <div class="p-b-40px p-t-60px flex flex-1 flex-col">
-        <RouterView class="p-16px flex-1" />
+      <div class="p-16px p-b-40px p-t-121px flex flex-1 flex-col">
+        <RouterView />
       </div>
       <n-layout-footer
         bordered

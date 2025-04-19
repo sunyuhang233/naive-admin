@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { LOGIN_PATH, NOT_FOUND_PATH } from '~/config'
 import { initDynamicRouter } from './dynamicRoutes'
 import { staticRoutes } from './staticRoutes'
 
@@ -13,6 +14,7 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
   const menuStore = useMenuStore()
+
   const isLogin = !!authStore.accessToken
   if (to.meta.href) {
     window.open(to.meta.href as string)
@@ -20,17 +22,15 @@ router.beforeEach(async (to, from, next) => {
   }
   // 有 Token 就在当前页面，没有 Token 重置路由到登陆页
   if (!isLogin) {
-    if (to.name === 'login') {
+    if (to.path === LOGIN_PATH) {
       next()
     }
-    else if (to.name !== 'login') {
-      const redirect = to.name === '404' ? undefined : to.fullPath
-      next({ path: '/login', query: { redirect } })
+    else if (to.path !== LOGIN_PATH) {
+      const redirect = to.path === NOT_FOUND_PATH ? undefined : to.fullPath
+      next({ path: LOGIN_PATH, query: { redirect } })
     }
     return false
   }
-
-  console.log('menuStore.isInitAuthRoute', menuStore.isInitAuthRoute)
   if (!menuStore.isInitAuthRoute) {
     console.log(to.name)
     await initDynamicRouter()
@@ -44,7 +44,7 @@ router.beforeEach(async (to, from, next) => {
       return false
     }
   }
-  if (to.name === 'login') {
+  if (to.path === LOGIN_PATH) {
     next({ path: '/' })
     return false
   }
@@ -52,7 +52,10 @@ router.beforeEach(async (to, from, next) => {
 })
 router.beforeResolve((to, from, next) => {
   const menuStore = useMenuStore()
+  const tabStore = useTabStore()
+  tabStore.addTab(to)
   menuStore.setActiveMenu(to.fullPath)
+  tabStore.setCurrentTabPath(to.fullPath)
   next()
 })
 

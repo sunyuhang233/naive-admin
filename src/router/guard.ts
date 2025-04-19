@@ -1,8 +1,7 @@
 import type { Router } from 'vue-router'
+import { LOGIN_PATH, WHITE_PATH } from '~/config'
 import router from '.'
 import { initDynamicRouter } from './dynamicRoutes'
-
-const whiteList = ['/login']
 
 function resetRouter() {
   const menuStore = useMenuStore()
@@ -22,7 +21,7 @@ export function createRouterGuard(router: Router) {
     document.title = to.meta.title ? `${to.meta.title} - Naive Admin` : 'Naive Admin'
     // 有 Token 就在当前页面，没有 Token 重置路由到登陆页
     if (!authStore.accessToken) {
-      if (whiteList.includes(to.path)) {
+      if (WHITE_PATH.includes(to.path)) {
         next()
         return
       }
@@ -32,7 +31,7 @@ export function createRouterGuard(router: Router) {
       }
     }
     // 3.判断是访问登陆页
-    if (to.path === '/login') {
+    if (to.path === LOGIN_PATH) {
       resetRouter()
       next(from.fullPath)
     }

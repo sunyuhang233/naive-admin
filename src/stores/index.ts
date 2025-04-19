@@ -5,6 +5,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 export * from './auth'
 export * from './menu'
 export * from './setting'
+export * from './tab'
 
 export function installPinia(app: App) {
   const pinia = createPinia()
