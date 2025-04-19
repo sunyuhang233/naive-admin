@@ -1,15 +1,16 @@
 <script setup lang="ts">
 const settingStore = useSettingStore()
 
+const { t } = useI18n()
 const options = computed(() => {
   return [
     {
-      label: '中文',
-      value: 'zh-CN',
+      label: t('setting.zh'),
+      value: 'zhCN',
     },
     {
-      label: '英文',
-      value: 'en-US',
+      label: t('setting.en'),
+      value: 'enUS',
     },
   ]
 })

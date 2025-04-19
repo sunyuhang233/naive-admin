@@ -21,6 +21,7 @@
     "colord": "catalog:",
     "vue": "catalog:frontend",
     "vue-draggable-plus": "catalog:",
+    "vue-i18n": "catalog:dev",
     "vue-router": "catalog:frontend"
   },
   "devDependencies": {

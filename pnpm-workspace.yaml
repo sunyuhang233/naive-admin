@@ -29,6 +29,7 @@ catalogs:
     pinia-plugin-persistedstate: ^4.2.0
     simple-git-hooks: ^2.12.1
     typescript: ^5.8.2
+    vue-i18n: ^10.0.0
     vue-tsc: ^2.2.8
   frontend:
     '@vueuse/core': ^13.0.0

@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { darkTheme, dateEnUS, dateZhCN, enUS, lightTheme, zhCN } from 'naive-ui'
+import { darkTheme, lightTheme } from 'naive-ui'
+import { naiveI18nOptions } from './utils/i18n'
 
 const settingStore = useSettingStore()
+
+const naiveLocale = computed(() => {
+  return naiveI18nOptions[settingStore.lang] ? naiveI18nOptions[settingStore.lang] : naiveI18nOptions.enUS
+})
 </script>
 
 <template>
   <n-config-provider
     class="h-full w-full"
-    :locale="settingStore.lang === 'zh-CN' ? zhCN : enUS"
-    :date-locale="settingStore.lang === 'zh-CN' ? dateZhCN : dateEnUS"
+    :locale="naiveLocale.locale"
+    :date-locale="naiveLocale.dateLocale"
     :theme="settingStore.mode === 'light' ? lightTheme : darkTheme"
     :theme-overrides="settingStore.theme"
   >

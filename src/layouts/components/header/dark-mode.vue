@@ -2,21 +2,21 @@
 import { NFlex } from 'naive-ui'
 
 const settingStore = useSettingStore()
-
+const { t } = useI18n()
 const options = computed(() => {
   return [
     {
-      label: '亮色',
+      label: t('setting.light'),
       value: 'light',
       icon: 'i-icon-park-outline-sun-one',
     },
     {
-      label: '暗色',
+      label: t('setting.dark'),
       value: 'dark',
       icon: 'i-icon-park-outline-moon',
     },
     {
-      label: '跟随系统',
+      label: t('setting.auto'),
       value: 'auto',
       icon: 'i-icon-park-outline-laptop-computer',
     },

@@ -11,7 +11,7 @@ export default defineConfig({
     vue(),
     UnoCSS(),
     AutoImport({
-      imports: ['vue', 'vue-router', 'pinia', '@vueuse/core', {
+      imports: ['vue', 'vue-router', 'pinia', '@vueuse/core', 'vue-i18n', {
         'naive-ui': [
           'useDialog',
           'useMessage',

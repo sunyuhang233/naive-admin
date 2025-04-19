@@ -20,6 +20,6 @@ function handleReload() {
         <div class="i-icon-park-outline-refresh" :class="{ 'animate-spin': loading }" />
       </IconButton>
     </template>
-    <span>刷新</span>
+    <span>{{ $t('common.reload') }}</span>
   </n-tooltip>
 </template>

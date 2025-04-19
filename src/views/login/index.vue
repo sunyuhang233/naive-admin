@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FormInst, FormRules } from 'naive-ui'
+import type { FormInst } from 'naive-ui'
 import { Locked, User } from '@vicons/carbon'
 import { useDateFormat } from '@vueuse/core'
 import { useNotification } from 'naive-ui'
@@ -7,7 +7,7 @@ import { HOME_PATH } from '~/config'
 import { initDynamicRouter } from '~/router/dynamicRoutes'
 import { local } from '~/utils/cache'
 
-
+const { t } = useI18n()
 const loading = ref(false)
 const formRef = ref<FormInst | null>(null)
 const notification = useNotification()
@@ -16,20 +16,20 @@ const model = ref<LoginModel>({
   password: '123456',
   isRemember: false,
 })
-const rules: FormRules = {
-  password: [
-    {
-      required: true,
-      message: '请输入密码',
-    },
-  ],
+const rules = computed(() => ({
   username: [
     {
       required: true,
-      message: '请输入用户名',
+      message: t('form.username'),
     },
   ],
-}
+  password: [
+    {
+      required: true,
+      message: t('form.password'),
+    },
+  ],
+}))
 
 const router = useRouter()
 const route = useRoute()
@@ -73,8 +73,8 @@ const handleLogin = () => {
  * 获取记住我 - 信息
  */
 const getRemember = () => {
-  const remember = local.getItem('loginAccount')
-  if (remember) {
+  const remember = local.getItem('loginAccount') as LoginModel
+  if (remember && typeof remember === 'object') {
     model.value = {
       username: remember.username,
       password: remember.password,
@@ -93,8 +93,8 @@ onMounted(() => {
     <div class="bg h-120vw w-120vw md:h-50vw md:w-50vw" />
     <section class="dark:bg-dark-5 px-4 py-6 rounded-1.5 bg-[#ffffff93] bg-white w-9/10 backdrop-blur-12px backdrop-saturate-180 md:px-8 md:py-6 dark:bg-dark-500 md:w-800px">
       <header class="tracking-0.2em flex min-h-3em items-center justify-between">
-        <small>Logo</small>
-        <small class="">后台管理</small>
+        <small>{{ $t('common.loginTitle') }}</small>
+        <small class="">{{ $t('common.loginSubtitle') }}</small>
       </header>
       <section class="pb-10 flex flex-wrap items-center justify-between">
         <div class="flex-1">
@@ -105,14 +105,14 @@ onMounted(() => {
           <h2
             tracking-0.2em mb-5 text-center
           >
-            登 录
+            {{ $t('common.loginTitle') }}
           </h2>
           <n-form-item path="username">
             <n-input
               v-model:value="model.username"
               clearable
               size="large"
-              placeholder="请输入用户名"
+              :placeholder="$t('form.username')"
               @keydown.enter.prevent="handleLogin"
             >
               <template #prefix>
@@ -127,7 +127,7 @@ onMounted(() => {
               size="large"
               show-password-on="mousedown"
               type="password"
-              placeholder="请输入密码"
+              :placeholder="$t('form.password')"
               @keydown.enter.prevent="handleLogin"
             >
               <template #prefix>
@@ -137,12 +137,12 @@ onMounted(() => {
           </n-form-item>
           <n-form-item path="isRemember">
             <n-checkbox v-model:checked="model.isRemember" size="large">
-              记住我
+              {{ $t('form.isRemember') }}
             </n-checkbox>
           </n-form-item>
           <n-form-item>
             <n-button :loading="loading" circle type="primary" block size="large" @click="handleLogin">
-              登录
+              {{ $t('form.login') }}
             </n-button>
           </n-form-item>
         </n-form>
