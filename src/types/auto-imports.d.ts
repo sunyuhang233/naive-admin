@@ -60,6 +60,7 @@ declare global {
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
   const storeToRefs: typeof import('pinia')['storeToRefs']
+  const tab: typeof import('../stores/tab')['default']
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
@@ -82,6 +83,7 @@ declare global {
   const useRouter: typeof import('vue-router')['useRouter']
   const useSettingStore: typeof import('../stores/setting')['useSettingStore']
   const useSlots: typeof import('vue')['useSlots']
+  const useTabStore: typeof import('../stores/tab')['useTabStore']
   const useTemplateRef: typeof import('vue')['useTemplateRef']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
@@ -176,6 +178,7 @@ declare module 'vue' {
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSettingStore: UnwrapRef<typeof import('../stores/setting')['useSettingStore']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
+    readonly useTabStore: UnwrapRef<typeof import('../stores/tab')['useTabStore']>
     readonly useTemplateRef: UnwrapRef<typeof import('vue')['useTemplateRef']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
