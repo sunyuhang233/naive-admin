@@ -35,6 +35,8 @@ export const useSettingStore = defineStore('setting', () => {
   const primaryColor = ref('#42b983')
   const transition = ref('')
   const loadFlag = ref(true)
+  const isDark = useDark()
+  const colorMode = useColorMode()
 
   const layout = ref<LayoutType>('left')
 
@@ -110,6 +112,8 @@ export const useSettingStore = defineStore('setting', () => {
   }
   const toggleMode = (modeType: 'light' | 'dark' | 'system') => {
     mode.value = modeType
+    isDark.value = modeType === 'dark'
+    colorMode.store.value = modeType === 'dark' ? 'dark' : 'light'
   }
 
   const toggleCollapse = () => {
