@@ -115,7 +115,7 @@ useDraggable(el, tabs, {
         :on-clickoutside="onClickoutside" @select="handleSelect"
       />
     </div>
-    <n-el class="bg-[var(--base-color)] flex gap-1 h-full items-center right-0 absolute">
+    <n-el class="flex gap-1 h-full items-center right-0 absolute">
       <Reload />
       <ContentFullScreen />
       <DropTabs />
