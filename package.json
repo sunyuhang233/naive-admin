@@ -19,6 +19,8 @@
     "@vicons/carbon": "catalog:",
     "@vueuse/core": "catalog:frontend",
     "colord": "catalog:",
+    "echarts": "catalog:",
+    "echarts-liquidfill": "catalog:",
     "vue": "catalog:frontend",
     "vue-draggable-plus": "catalog:",
     "vue-i18n": "catalog:dev",
